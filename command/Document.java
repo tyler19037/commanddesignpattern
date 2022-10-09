@@ -8,10 +8,19 @@ public class Document {
 
     public Document(String fileName) {
         this.fileName = fileName;
+        lines = FileManipulator.readFile(fileName);
     }
 
     public String view() {
-        return "";
+        return viewLines();
+    }
+
+    public String viewLines(){
+        String str = "";
+        for(int i = 0; i<lines.size(); i++){
+            str+=lines.get(i)+"\n";
+        }
+        return str;
     }
 
     public String append(String line) {

@@ -8,6 +8,8 @@ public class SaveCommand extends Command {
     }
 
     public String execute() {
+        System.out.println(this.document.save());
+        
         return this.document.save();
     }
 }
