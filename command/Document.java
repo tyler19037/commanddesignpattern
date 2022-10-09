@@ -15,13 +15,17 @@ public class Document {
     }
 
     public String append(String line) {
+        lines.add(line);
         return "The line has been appended to the document";
     }
 
+    // Clears out the arraylist to add in the new line written in the terminal.
     public String write(String line) {
+        lines.clear();
         return "The line was written to the file";
     }
 
+    // Only saves the file if FileManipulator returns true.
     public String save() {
         if(FileManipulator.writeFile(fileName, lines) == true) {
             return "The file has been saved";
