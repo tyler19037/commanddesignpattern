@@ -6,15 +6,19 @@ public class InputHandler {
     private HashMap<String, Command> commands = new HashMap<String, Command>();
 
     public InputHandler(Document document) {
-        commands.put("view", new ViewCommand(document));
-        commands.put("write", new WriteCommand(document));
-        commands.put("save", new SaveCommand(document));
-        commands.put("append", new AppendCommand(document));
+        ViewCommand viewCommand = new ViewCommand(document);
+        WriteCommand writeCommand = new WriteCommand(document);
+        SaveCommand saveCommand = new SaveCommand(document);
+        AppendCommand appendCommand = new AppendCommand(document);
+        commands.put("view", viewCommand);
+        commands.put("write", writeCommand);
+        commands.put("save", saveCommand);
+        commands.put("append", appendCommand);
     }
 
     public void inputEntered(String data) {
         if (commands.containsKey(data)) {
-            (commands.get(data)).execute();
+            System.out.println((commands.get(data)).execute());
         }
     }
 }

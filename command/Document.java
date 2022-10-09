@@ -12,14 +12,35 @@ public class Document {
     }
 
     public String view() {
-        return viewLines();
-    }
-
-    public String viewLines(){
         String str = "";
-        for(int i = 0; i<lines.size(); i++){
-            str+=lines.get(i)+"\n";
+        int longestLineLength = 0;
+        if (lines.size() > 0) {
+            longestLineLength = lines.get(0).length();
         }
+        for(int i = 0; i<lines.size() - 1; i++){
+            if (lines.size() >= 1 && lines.get(i).length() < lines.get(i+1).length()) {
+                longestLineLength = lines.get(i+1).length();
+            }
+        }
+        str += "______";
+        for (int i = 0; i < longestLineLength; i++) {
+            str += "_";
+        }
+        str += "____" + "\n" + "\n";
+        for(int i = 0; i<lines.size(); i++){
+            str += "|     ";
+            str+=lines.get(i);
+            int tempLineLength = longestLineLength - lines.get(i).length();
+            for (int j = 0; j < tempLineLength; j++) {
+                str += " ";
+            }
+            str += "     |" + "\n";
+        }
+        str += "______";
+        for (int i = 0; i < longestLineLength; i++) {
+            str += "_";
+        }
+        str += "____";
         return str;
     }
 
@@ -31,6 +52,7 @@ public class Document {
     // Clears out the arraylist to add in the new line written in the terminal.
     public String write(String line) {
         lines.clear();
+        lines.add(line);
         return "The line was written to the file";
     }
 
